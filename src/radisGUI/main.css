@@ -1,0 +1,40 @@
+.root{
+ -fx-background-image: url("background.jpg");
+ }
+.label{
+	-fx-font-weight:bold;
+	-fx-font-family:Tahoma;
+}
+.table-view .column-header .label {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+.table-view{
+-fx-font-weight: bold;
+}
+#header_first{
+ -	fx-font-size: 35px;
+   -fx-font-family: "Arial Black";
+   -fx-fill: #818181;
+   -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+   }
+ #header_second{
+	-fx-font-size:20px;
+ }
+.button{
+    -fx-text-fill: white;
+    -fx-font-family: "Tahoma";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#665300, #69ab35);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+.button:hover{
+	-fx-background-color: linear-gradient(#69ab35, #665300);
+}
+#center{
+	-fx-hpos:center;
+}
+#error{
+	-fx-text-fill: red;
+	-fx-font-size: 15px;
+}
