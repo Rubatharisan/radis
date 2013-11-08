@@ -13,7 +13,7 @@ public class HelloWorld {
 	
 
 	
-		System.out.println("Bj�rn is gay?");
+		System.out.println("Andreas is gay?");
 		System.out.println("I Agree with that !!!");
 	}
 }
