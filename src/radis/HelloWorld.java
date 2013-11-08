@@ -6,5 +6,9 @@ public class HelloWorld {
 		System.out.println("Bj√∏rn er en slave.");
 		
 	}
+	
+	public void hello(){
+		System.out.println("Bjørn is gay?");
+	}
 }
 
