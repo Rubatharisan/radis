@@ -129,8 +129,7 @@ public class ErpOrderConfirmation extends Application{
 			     document.getRootElement().addContent(element);
 			     
 			     File slideSample = new File("slideSample01.xml");
-	
-			    	 slideSample.createNewFile();
+			     slideSample.createNewFile();
 			     
 
 			        try(OutputStream out = new FileOutputStream("slideSample01.xml")) {
