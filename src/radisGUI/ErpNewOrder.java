@@ -2,6 +2,8 @@ package radisGUI;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import DB.connectDB;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -61,7 +63,8 @@ public class ErpNewOrder extends Application {
 				"name"));
 
 		table.getColumns().add(products);
-		ReadItems read = new ReadItems();
+		connectDB read = new connectDB();
+		read.readDataBase();
 		table.setItems(read.getProducts());
 		table.getSelectionModel().selectedIndexProperty()
 				.addListener(new TableSelector());
@@ -87,7 +90,7 @@ public class ErpNewOrder extends Application {
 		ETAres = new Label("--");
 		rightLabels.getChildren().add(ETAres);
 
-		Label availability = new Label("Til��ngelig: ");
+		Label availability = new Label("Tilgængelig: ");
 		rightLabels.getChildren().add(availability);
 
 		availabilityRes = new Label("--");
@@ -186,7 +189,7 @@ public class ErpNewOrder extends Application {
 		public void handle(ActionEvent arg0) {
 			
 			if(quantityField.getText().isEmpty()){
-				responseLabel.setText("Du skal angive en m��ngde.");
+				responseLabel.setText("Du skal angive en m������ngde.");
 			}
 			else if(quantityField.getText().isEmpty() == false){
 				

@@ -43,7 +43,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "name: " + name + " ID: " + ID + " ETA: " + ETA + "\n";
+		return name + "\n" + ID + "\n" + ETA + "\n" + available + "\n";
 	}
 
 }
