@@ -58,7 +58,7 @@ public class ErpMain extends Application {
 		// INIT
 		Scene scene = new Scene(main, 258, 300);
 		primaryStage.setScene(scene);
-	    scene.getStylesheets().add(ErpMain.class.getResource("/assets/stylesheets/main.css").toExternalForm());
+	    scene.getStylesheets().add(ErpMain.class.getResource("main.css").toExternalForm());
 		
 		primaryStage.show();
 
