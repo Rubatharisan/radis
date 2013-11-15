@@ -66,6 +66,11 @@ public class RconnectDB {
 //      System.out.println("ETA: " + eta);
     }
   }
+  
+  private void insertOrder(){
+	  
+  }
+  
 
   // You need to close the resultSet
   private void close() {

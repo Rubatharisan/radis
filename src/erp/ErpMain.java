@@ -28,7 +28,7 @@ public class ErpMain extends Application {
 		VBox main = new VBox(15);
 		main.setPadding(new Insets(75, 0, 0, 45));
 
-		// SEKUND��R BOKS
+		// SEKUND������R BOKS
 		// Indeholder overskrifterne
 		VBox sec = new VBox(5);
 		main.getChildren().add(sec);
@@ -42,14 +42,14 @@ public class ErpMain extends Application {
 		// BUTTONS BOX, indeholder knapperne
 		VBox buttons = new VBox(25);
 		main.getChildren().add(buttons);
-		Button newOrder = new Button("Opret Odre");
+		Button newOrder = new Button("Opret ordre");
 		buttons.getChildren().add(newOrder);
 		newOrder.setOnAction(new newOrderListener());
 
-		Button cancelOrder = new Button("Annuler Ordre");
+		Button cancelOrder = new Button("Annuler ordre");
 		buttons.getChildren().add(cancelOrder);
 
-		Button seeStatus = new Button("Se Status");
+		Button seeStatus = new Button("Se status");
 		buttons.getChildren().add(seeStatus);
 
 		buttonstat = new Label();
@@ -58,7 +58,7 @@ public class ErpMain extends Application {
 		// INIT
 		Scene scene = new Scene(main, 258, 300);
 		primaryStage.setScene(scene);
-	    scene.getStylesheets().add(ErpMain.class.getResource("main.css").toExternalForm());
+	    scene.getStylesheets().add(ErpMain.class.getResource("/assets/stylesheets/main.css").toExternalForm());
 		
 		primaryStage.show();
 

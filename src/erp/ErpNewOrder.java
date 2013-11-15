@@ -91,7 +91,7 @@ public class ErpNewOrder extends Application {
 		ETAres = new Label("--");
 		rightLabels.getChildren().add(ETAres);
 
-		Label availability = new Label("Tilgængelig: ");
+		Label availability = new Label("Tilg��ngelig: ");
 		rightLabels.getChildren().add(availability);
 
 		availabilityRes = new Label("--");
@@ -190,7 +190,7 @@ public class ErpNewOrder extends Application {
 		public void handle(ActionEvent arg0) {
 			
 			if(quantityField.getText().isEmpty()){
-				responseLabel.setText("Du skal angive en m������ngde.");
+				responseLabel.setText("Du skal angive en mængde.");
 			}
 			else if(quantityField.getText().isEmpty() == false){
 				
@@ -207,6 +207,7 @@ public class ErpNewOrder extends Application {
 
 			
 			orderIn.add(new LOrder(orderID, quantity, orderStatus, date, product));
+			
 			
 			ErpNewOrder.orderList = orderIn;
 			Stage confirmOrder = new Stage();
