@@ -1,4 +1,4 @@
-package DB;
+package radisData;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

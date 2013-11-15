@@ -2,7 +2,8 @@ package radisLogic;
 
 import java.io.File;
 
-import DB.connectDB;
+import radisData.connectDB;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

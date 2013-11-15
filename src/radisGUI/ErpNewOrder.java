@@ -3,7 +3,6 @@ package radisGUI;
 import java.util.ArrayList;
 import java.util.Date;
 
-import DB.connectDB;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -20,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import radisData.connectDB;
 import radisLogic.Product;
 import radisLogic.ReadItems;
 import radisLogic.Order;
