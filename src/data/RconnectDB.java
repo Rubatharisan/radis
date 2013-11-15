@@ -1,20 +1,19 @@
-package radisData;
+package data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import radisLogic.Product;
+import logic.LProduct;
 
-public class connectDB {
+public class RconnectDB {
   private Connection connect = null;
   private Statement statement = null;
   private ResultSet resultSet = null;
-  ObservableList<Product> products = FXCollections.observableArrayList();
+  ObservableList<LProduct> products = FXCollections.observableArrayList();
 
 
   public void readDataBase() throws Exception {
@@ -60,7 +59,7 @@ public class connectDB {
     	 availablef = false;
      }
          
-     products.add(new Product(name, id, eta, availablef));
+     products.add(new LProduct(name, id, eta, availablef));
 //     
 //      System.out.println("Name: " + name);
 //      System.out.println("ID: " + id);
@@ -86,7 +85,7 @@ public class connectDB {
 
     }
   }
-	public ObservableList<Product> getProducts() {
+	public ObservableList<LProduct> getProducts() {
 		return products;
 		
 	}

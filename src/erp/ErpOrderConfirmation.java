@@ -1,4 +1,4 @@
-package radisGUI;
+package erp;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -25,7 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import radisLogic.Order;
+import logic.LOrder;
 
 public class ErpOrderConfirmation extends Application{
 	
@@ -41,7 +41,7 @@ public class ErpOrderConfirmation extends Application{
 
 	}
 
-	Order order = ErpNewOrder.orderList.get(0);
+	LOrder order = ErpNewOrder.orderList.get(0);
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub

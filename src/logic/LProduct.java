@@ -1,12 +1,12 @@
-package radisLogic;
+package logic;
 
-public class Product {
+public class LProduct {
 
 	String name, ID;
 	int ETA;
 	boolean available;
 
-	public Product(String name, String ID, int ETA, boolean available) {
+	public LProduct(String name, String ID, int ETA, boolean available) {
 		this.name = name;
 		this.ID = ID;
 		this.ETA = ETA;

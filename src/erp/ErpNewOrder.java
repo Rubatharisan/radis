@@ -1,7 +1,9 @@
-package radisGUI;
+package erp;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import data.RconnectDB;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -19,18 +21,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import radisData.connectDB;
-import radisLogic.Product;
-import radisLogic.ReadItems;
-import radisLogic.Order;
+import logic.LOrder;
+import logic.LProduct;
+import logic.LReadItems;
 
 public class ErpNewOrder extends Application {
 
 	Stage primaryStage;
-	TableView<Product> table;
+	TableView<LProduct> table;
 	Label ETAres, IDres, nameRes, availabilityRes, selectedProduct,responseLabel;
 	TextField quantityField;
-	static ArrayList<Order> orderList;
+	static ArrayList<LOrder> orderList;
 
 	public static void main(String[] args) {
 
@@ -51,7 +52,7 @@ public class ErpNewOrder extends Application {
 		main.getChildren().add(secondaryHbox);
 		secondaryHbox.setPadding(new Insets(25, 25, 25, 25));
 
-		table = new TableView<Product>();
+		table = new TableView<LProduct>();
 		secondaryHbox.getChildren().add(table);
 		table.setMaxHeight(250);
 		table.setMaxWidth(150);
@@ -59,11 +60,11 @@ public class ErpNewOrder extends Application {
 		@SuppressWarnings("rawtypes")
 		TableColumn products = new TableColumn("Produkt");
 		products.setMinWidth(150);
-		products.setCellValueFactory(new PropertyValueFactory<Product, String>(
+		products.setCellValueFactory(new PropertyValueFactory<LProduct, String>(
 				"name"));
 
 		table.getColumns().add(products);
-		connectDB read = new connectDB();
+		RconnectDB read = new RconnectDB();
 		read.readDataBase();
 		table.setItems(read.getProducts());
 		table.getSelectionModel().selectedIndexProperty()
@@ -194,7 +195,7 @@ public class ErpNewOrder extends Application {
 			else if(quantityField.getText().isEmpty() == false){
 				
 				responseLabel.setText(" ");
-			ArrayList<Order> orderIn = new ArrayList<>();
+			ArrayList<LOrder> orderIn = new ArrayList<>();
 			
 			int quantity = Integer.valueOf(quantityField.getText());
 			String orderID = table.getSelectionModel().getSelectedItem().getID()+"OQ"+quantityField.getText();
@@ -202,10 +203,10 @@ public class ErpNewOrder extends Application {
 			Date getDate = new Date();
 			@SuppressWarnings("deprecation")
 			String date = getDate.getDay()+"-"+getDate.getMonth()+"-"+getDate.getYear();
-			Product product= table.getSelectionModel().getSelectedItem();
+			LProduct product= table.getSelectionModel().getSelectedItem();
 
 			
-			orderIn.add(new Order(orderID, quantity, orderStatus, date, product));
+			orderIn.add(new LOrder(orderID, quantity, orderStatus, date, product));
 			
 			ErpNewOrder.orderList = orderIn;
 			Stage confirmOrder = new Stage();
@@ -223,7 +224,7 @@ public class ErpNewOrder extends Application {
 		
 		
 	}
-	public static ArrayList<Order> getOrderList(){
+	public static ArrayList<LOrder> getOrderList(){
 		
 		return ErpNewOrder.orderList;
 	}

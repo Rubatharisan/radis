@@ -1,4 +1,4 @@
-package radisGUI;
+package erp;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;

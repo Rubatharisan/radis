@@ -1,15 +1,15 @@
-package radisLogic;
+package logic;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Order {
+public class LOrder {
 	String orderID, orderStatus;
 	String orderDate;
 	int orderQuantity;
-	Product product;
+	LProduct product;
 
-	public Order(String orderID,int orderQuantity, String orderStatus, String orderDate, Product product){
+	public LOrder(String orderID,int orderQuantity, String orderStatus, String orderDate, LProduct product){
 		this.orderID = orderID;
 		this.orderQuantity = orderQuantity;
 		this.orderStatus = orderStatus;
@@ -33,7 +33,7 @@ public class Order {
 	public String getOrderDate() {
 		return orderDate;
 	}
-	public Product getProduct(){
+	public LProduct getProduct(){
 		return product;
 		
 	}
@@ -44,7 +44,7 @@ public class Order {
 		int hours = ((product.getETA() * orderQuantity / 6)/24);
 		return hours;
 	}
-	public void submitOrder(ArrayList<Order> order){
+	public void submitOrder(ArrayList<LOrder> order){
 		
 	}
 }
