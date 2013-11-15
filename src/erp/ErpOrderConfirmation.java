@@ -120,8 +120,8 @@ public class ErpOrderConfirmation extends Application{
 			File input = new File("slideSample01.xml"); 
 	        Document document;
 			try {
-				document = new SAXBuilder().build(input);
 				
+				document = new SAXBuilder().build(input);
 				//specificer hvilket element vi gerne vil skrive til
 				 Element element = new Element("ID");
 				// Parameteret for element "ID"
