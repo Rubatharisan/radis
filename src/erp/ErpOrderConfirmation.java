@@ -10,9 +10,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
-import org.jdom2.*;
-import org.jdom2.input.*;
-import org.jdom2.output.*;
+
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
