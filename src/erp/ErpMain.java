@@ -28,7 +28,7 @@ public class ErpMain extends Application {
 		VBox main = new VBox(15);
 		main.setPadding(new Insets(75, 0, 0, 45));
 
-		// SEKUND������R BOKS
+		// SEKUNDER BOKS
 		// Indeholder overskrifterne
 		VBox sec = new VBox(5);
 		main.getChildren().add(sec);

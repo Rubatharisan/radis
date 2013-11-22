@@ -24,6 +24,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.LOrder;
+import logic.LxmlWriter;
 
 public class ErpOrderConfirmation extends Application{
 	
@@ -115,33 +116,8 @@ public class ErpOrderConfirmation extends Application{
 		@Override
 		public void handle(ActionEvent arg0) {
 			
-			File input = new File("slideSample01.xml"); 
-	        Document document;
-			try {
-				
-				document = new SAXBuilder().build(input);
-				//specificer hvilket element vi gerne vil skrive til
-				 Element element = new Element("ID");
-				// Parameteret for element "ID"
-			     element.addContent(order.getProductName());
-			     document.getRootElement().addContent(element);
-			     
-			     File slideSample = new File("slideSample01.xml");
-			     slideSample.createNewFile();
-			     
-
-			        try(OutputStream out = new FileOutputStream("slideSample01.xml")) {
-			            new XMLOutputter().output(document, out);
-			            System.out.println("Data er sendt til XML");
-			        }
-			} catch (JDOMException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	      
+			LxmlWriter write = new LxmlWriter();
+			write.writeXML(order);
 			
 		}
 		

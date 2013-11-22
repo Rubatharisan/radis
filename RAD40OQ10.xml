@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b2mml:MaterialInformation xmlns:b2mml="http://www.mesa.org/xml/B2MML-V0600"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mesa.org/xml/B2MML-V0600 B2MML-V0600-Material.xsd">
+	<b2mml:ID>RAD40OQ10</b2mml:ID>
+	<b2mml:Description>radiser</b2mml:Description>
+	<b2mml:PublishedDate>22-11-2013</b2mml:PublishedDate>
+	<b2mml:MaterialLot>
+		<b2mml:ID>RAD40OQ10LOT</b2mml:ID>
+		<b2mml:Status>To Begin</b2mml:Status>
+		<b2mml:Quantity><b2mml:QuantityString>10</b2mml:QuantityString><b2mml:DataType>double</b2mml:DataType><b2mml:UnitOfMeasure>regular</b2mml:UnitOfMeasure><b2mml:Key>RAD40OQ10key</b2mml:Key></b2mml:Quantity>
+	</b2mml:MaterialLot>
+</b2mml:MaterialInformation>
