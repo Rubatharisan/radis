@@ -67,7 +67,7 @@ public class LxmlSender {
          */
         try {
             queueConnectionFactory = (QueueConnectionFactory)
-                jndiContext.lookup("glassfishDestination");
+                jndiContext.lookup(" glassfishConnectionFactory");
             queue = (Queue) jndiContext.lookup(queueName);
         } catch (NamingException e) {
             System.out.println("JNDI API lookup failed: " + 
