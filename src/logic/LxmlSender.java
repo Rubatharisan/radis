@@ -22,7 +22,7 @@ import javax.naming.NamingException;
 public class LxmlSender {
 	private String everything;
 	
-	public void sendFile(File file, String[] args){
+	public void sendFile(File file){
 		String                  queueName = null;
         Context                 jndiContext = null;
         QueueConnectionFactory  queueConnectionFactory = null;
@@ -33,7 +33,7 @@ public class LxmlSender {
         TextMessage             message = null;
         final int               NUM_MSGS;
         
-
+        String[] args = {"glassfishDestination"};
      
         
         if ( (args.length < 1) || (args.length > 2) ) {
@@ -67,7 +67,7 @@ public class LxmlSender {
          */
         try {
             queueConnectionFactory = (QueueConnectionFactory)
-                jndiContext.lookup("glassfishConnectionFactory");
+                jndiContext.lookup("glassfishDestination");
             queue = (Queue) jndiContext.lookup(queueName);
         } catch (NamingException e) {
             System.out.println("JNDI API lookup failed: " + 

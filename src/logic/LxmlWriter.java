@@ -94,8 +94,8 @@ public class LxmlWriter {
 		LxmlSender send = new LxmlSender();
 		System.out.println("File saved!");
 		System.out.println(send.readFile(writtenFile));
-		String[] args = {"glassfishDestination"};
-		send.sendFile(writtenFile, args);
+		
+		send.sendFile(writtenFile);
 		
 		}catch (ParserConfigurationException pce) {
 			pce.printStackTrace();
