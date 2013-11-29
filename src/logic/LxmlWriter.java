@@ -69,7 +69,7 @@ public class LxmlWriter {
 		Material_Quantity.appendChild(Quantity_Data);
 		
 		Element Quantity_unit = doc.createElement("b2mml:UnitOfMeasure");
-		Quantity_unit.appendChild(doc.createTextNode("regular")); //SPØRG JENS! :(
+		Quantity_unit.appendChild(doc.createTextNode("units"));
 		Material_Quantity.appendChild(Quantity_unit);
 		
 		Element Quantity_key = doc.createElement("b2mml:Key");

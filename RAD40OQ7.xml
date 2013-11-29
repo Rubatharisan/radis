@@ -9,7 +9,8 @@
 	<b2mml:MaterialLot>
 		<b2mml:ID>RAD40OQ7LOT</b2mml:ID>
 		<b2mml:Status>To Begin</b2mml:Status>
-		<b2mml:Quantity><b2mml:QuantityString>7</b2mml:QuantityString>
+		<b2mml:Quantity>
+			<b2mml:QuantityString>7</b2mml:QuantityString>
 			<b2mml:DataType>double</b2mml:DataType>
 			<b2mml:UnitOfMeasure>regular</b2mml:UnitOfMeasure>
 			<b2mml:Key>RAD40OQ7key</b2mml:Key>
