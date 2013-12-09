@@ -1,8 +1,15 @@
 package logic;
 
+
+
 import java.io.File;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import javax.jms.JMSException;
+import javax.naming.NamingException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -11,12 +18,18 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
+
+import com.sun.org.apache.xml.internal.serialize.OutputFormat;
+import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
+
 
 public class LxmlWriter {
 	
-	public void writeXML(LOrder order){
+	public void writeXML(LOrder order) throws JMSException{
 		try{
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -83,24 +96,50 @@ public class LxmlWriter {
 		DOMSource source = new DOMSource(doc);
 		File writtenFile = new File(order.getOrderID()+".xml");
 		StreamResult result = new StreamResult(writtenFile);
+		transformer.transform(source, result);
+		System.out.println("File saved! " + writtenFile.getName());
+		
+		//Validating the saved xml against XSD B2MML 
+		LxmlValidate validate = new LxmlValidate(writtenFile.getName(), ".git/src\\B2mml\\B2MML-V0600-Material.xsd");
+		System.out.println("The xml file: " + writtenFile.getName() + " " + "is VALID against: " + "B2MML-V0600-Material.xsd");
 		
 
+		// write the xml content into console
+		OutputFormat format    = new OutputFormat (doc); 
+		StringWriter stringOut = new StringWriter (); 
+		XMLSerializer serial   = new XMLSerializer (stringOut, 
+                format);
+		serial.serialize(doc);
 		
+		System.out.println("========Sending the xml file via JMS==========");
+
  
-		// Output to console for testing
-		// StreamResult result = new StreamResult(System.out);
- 
-		transformer.transform(source, result);
 		LxmlSender send = new LxmlSender();
-		System.out.println("File saved!");
-		System.out.println(send.readFile(writtenFile));
+		send.SendXML(writtenFile.getName());
 		
-		send.sendFile(writtenFile);
+		System.out.println("========The XML file is sent========");
+		
+		System.out.println("========Receiving the message in MES=========");
+		
+		LxmlReceiver receive = new LxmlReceiver();
+		receive.ReceiveXML(".git/src\\mes\\" + writtenFile.getName());
+		
+		System.out.println("========The XML file is received in MES=========");
+		
 		
 		}catch (ParserConfigurationException pce) {
 			pce.printStackTrace();
 		  } catch (TransformerException tfe) {
 			tfe.printStackTrace();
-		  }
+		  } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

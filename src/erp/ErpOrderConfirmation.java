@@ -5,11 +5,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import javax.jms.JMSException;
+
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
+
 
 
 import javafx.application.Application;
@@ -117,7 +120,14 @@ public class ErpOrderConfirmation extends Application{
 		public void handle(ActionEvent arg0) {
 			
 			LxmlWriter write = new LxmlWriter();
-			write.writeXML(order);
+			
+				try {
+					write.writeXML(order);
+				} catch (JMSException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
 			
 		}
 		

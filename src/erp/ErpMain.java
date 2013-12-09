@@ -1,5 +1,8 @@
 package erp;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,13 +12,26 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import jms.Server;
 
 public class ErpMain extends Application {
 	Label buttonstat;
 	Stage primaryStage;
 
 	public static void main(String[] args) {
-		launch(args);
+		try {
+			Server server = new Server("testtopic", "Mohammad", "Saad");
+			System.out.println("=============Connected on Server==============");
+			launch(args);
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 	}
 
 	@Override
