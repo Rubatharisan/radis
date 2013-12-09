@@ -20,15 +20,13 @@ public class ErpMain extends Application {
 
 	public static void main(String[] args) {
 		try {
-			Server server = new Server("testtopic", "Mohammad", "Saad");
-			System.out.println("=============Connected on Server==============");
+			
 			launch(args);
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 		
 		
