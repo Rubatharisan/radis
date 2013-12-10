@@ -29,7 +29,7 @@ public class RconnectDB {
       statement = connect.createStatement();
       // Result set get the result of the SQL query
       resultSet = statement
-          .executeQuery("select * from foo.products");
+          .executeQuery("select * from foo.Products");
       writeResultSet(resultSet);
       
     } catch (Exception e) {
@@ -49,7 +49,7 @@ public class RconnectDB {
       // which starts at 1
       // e.g. resultSet.getSTring(2);
      String name = resultSet.getString("name");
-     String id = resultSet.getString("id");
+     int id = resultSet.getInt("id");
      int eta = resultSet.getInt("eta");
      int available = resultSet.getInt("available");
      boolean availablef;

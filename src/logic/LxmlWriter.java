@@ -63,7 +63,7 @@ public class LxmlWriter {
 		
 		
 		Element Material_ID = doc.createElement("b2mml:ID");
-		Material_ID.appendChild(doc.createTextNode(order.getOrderID()+"LOT"));
+		Material_ID.appendChild(doc.createTextNode(String.valueOf(order.getOrderID())+"LOT"));
 		MaterialLot.appendChild(Material_ID);
 		
 		Element Material_Status = doc.createElement("b2mml:Status");
@@ -100,7 +100,7 @@ public class LxmlWriter {
 		System.out.println("File saved! " + writtenFile.getName());
 		
 		//Validating the saved xml against XSD B2MML 
-		LxmlValidate validate = new LxmlValidate(writtenFile.getName(), ".git/src\\B2mml\\B2MML-V0600-Material.xsd");
+		LxmlValidate validate = new LxmlValidate(writtenFile.getName(), "B2mml/B2MML-V0600-Material.xsd");
 		System.out.println("The xml file: " + writtenFile.getName() + " " + "is VALID against: " + "B2MML-V0600-Material.xsd");
 		
 
@@ -121,8 +121,6 @@ public class LxmlWriter {
 		
 		System.out.println("========Receiving the message in MES=========");
 		
-		LxmlReceiver receive = new LxmlReceiver();
-		receive.ReceiveXML(".git/src\\mes\\" + writtenFile.getName());
 		
 		System.out.println("========The XML file is received in MES=========");
 		

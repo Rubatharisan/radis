@@ -65,7 +65,7 @@ public class ErpOrderConfirmation extends Application{
 		Label orderID = new Label("orderID");
 		rightLabels.getChildren().add(orderID);
 		
-		Label quantityLabel = new Label("m��ngde");
+		Label quantityLabel = new Label("mængde");
 		rightLabels.getChildren().add(quantityLabel);
 		
 		Label statusLabel = new Label("Status: ");

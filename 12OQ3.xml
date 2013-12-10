@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<b2mml:MaterialInformation xmlns:b2mml="http://www.mesa.org/xml/B2MML-V0600"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mesa.org/xml/B2MML-V0600 B2MML-V0600-Material.xsd">
+	<b2mml:ID>12OQ3</b2mml:ID>
+	<b2mml:Description>BjønsNosser</b2mml:Description>
+	<b2mml:PublishedDate>2013-12-10T12:26:30Z</b2mml:PublishedDate>
+	<b2mml:MaterialLot>
+		<b2mml:ID>12OQ3LOT</b2mml:ID>
+		<b2mml:Status>To Begin</b2mml:Status>
+		<b2mml:Quantity>
+			<b2mml:QuantityString>3</b2mml:QuantityString>
+			<b2mml:DataType>double</b2mml:DataType>
+			<b2mml:UnitOfMeasure>units</b2mml:UnitOfMeasure>
+			<b2mml:Key>12OQ3key</b2mml:Key>
+		</b2mml:Quantity>
+	</b2mml:MaterialLot>
+</b2mml:MaterialInformation>
