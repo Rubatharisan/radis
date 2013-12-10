@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import logic.LProduct;
@@ -29,7 +30,7 @@ public class RconnectDB {
       statement = connect.createStatement();
       // Result set get the result of the SQL query
       resultSet = statement
-          .executeQuery("select * from foo.products");
+          .executeQuery("select * from foo.Products");
       writeResultSet(resultSet);
       
     } catch (Exception e) {

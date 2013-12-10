@@ -43,7 +43,7 @@ public class LxmlReceiver {
 	     		
 	     		BytesMessage messageReceived = (BytesMessage) messageConsumer.receive();
 	     		
-	     		System.out.println("Received message with: " + messageReceived.getBodyLength() +
+	     		System.out.println("Received message with: " + messageReceived.getBodyLength() + 
 	     				" bytes. Now streaming to file on disk.");
 	     		
 	     		File file = new File(xmlFile);
