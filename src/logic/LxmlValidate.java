@@ -1,4 +1,7 @@
 package logic;
+
+
+
 import javax.xml.XMLConstants;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.parsers.DocumentBuilder; 
@@ -77,5 +80,19 @@ public class LxmlValidate {
 	     
 	   }
 	 
-
+	 public static void main(String [] args){
+		 boolean flag = true;
+		 try{
+	        	        	
+	            try{new LxmlValidate("RAD40OQ12.xml", ".git/src\\B2mml\\B2MML-V0600-Material.xsd");}
+	            catch (SAXException e){ flag = false; } 
+	            catch (IOException e) {	flag = false; }
+	            System.out.println("XML fil er valid : " + flag);
+	            
+	 }
+		 catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+}
 }

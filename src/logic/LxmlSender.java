@@ -1,155 +1,92 @@
 package logic;
 
-import java.io.BufferedReader;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Properties;
 
+import javax.jms.BytesMessage;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
+import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.QueueConnection;
 import javax.jms.QueueConnectionFactory;
-import javax.jms.QueueSender;
-import javax.jms.QueueSession;
 import javax.jms.Session;
 import javax.jms.TextMessage;
-import javax.naming.Context;
+import javax.jms.Topic;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 
+
 public class LxmlSender {
-	private String everything;
 	
-	public void sendFile(File file){
-		String                  queueName = null;
-        Context                 jndiContext = null;
-        QueueConnectionFactory  queueConnectionFactory = null;
-        QueueConnection         queueConnection = null;
-        QueueSession            queueSession = null;
-        Queue                   queue = null;
-        QueueSender             queueSender = null;
-        TextMessage             message = null;
-        final int               NUM_MSGS;
+	private final static long FILE_SIZE = 1000024; 
+
+
+
+    public void SendXML(String file) throws JMSException, FileNotFoundException, IOException, NamingException {
+
+    	
+    	 // Obtain a JNDI connection
+        Properties env = new Properties( );
+       
+        // ... specify the JNDI properties specific to the vendor
+        InitialContext jndi = new InitialContext(env);
+    	QueueConnectionFactory queueConnectionFactory =
+    			(QueueConnectionFactory) jndi.lookup("jms/__defaultConnectionFactory");
+    			
+    	// Look up a JMS Queue
+        Queue queue = (Queue) jndi.lookup("testqueue");
         
-        String[] args = {"glassfishDestination"};
+        
+        // Create a JMS connection
+     		QueueConnection queueConnection = queueConnectionFactory.createQueueConnection();
+     		Session session =  queueConnection.createSession(false,
+     				Session.AUTO_ACKNOWLEDGE);
+
+        MessageProducer producer = session.createProducer(queue);
+        
+    
+        File fileInput = new File(file);
+
+
+
+        BytesMessage message1 = session.createBytesMessage();
+        
+
+        FileInputStream fileInputStream = new FileInputStream(fileInput);
+        BufferedInputStream bufferedInput = new BufferedInputStream(fileInputStream);
+       	
+       	
+        int i;
+        
+        while((i = bufferedInput.read()) != -1)
+        {
+        	message1.writeInt(i);
+        }
+        message1.writeInt(-1);
+        
+        System.out.println("Sending the file.");
+        bufferedInput.close();
+     // Step 9. Send the Message
+      
+        producer.send(message1);
+        
+        System.out.println("File sent");
+
+        System.out.println("Stopping server.");
      
+        queueConnection.close();
         
-        if ( (args.length < 1) || (args.length > 2) ) {
-            System.out.println("Usage: java SimpleQueueSender " +
-                "<queue-name> [<number-of-messages>]");
-            System.exit(1);
-        }
-        queueName = new String(args[0]);
-        System.out.println("Queue name is " + queueName);
-        if (args.length == 2){
-            NUM_MSGS = (new Integer(args[1])).intValue();
-        } else {
-            NUM_MSGS = 1;
-        }
-        
-        /* 
-         * Create a JNDI API InitialContext object if none exists
-         * yet.
-         */
-        try {
-            jndiContext = new InitialContext();
-        } catch (NamingException e) {
-            System.out.println("Could not create JNDI API " +
-                "context: " + e.toString());
-            System.exit(1);
-        }
-        
-        /* 
-         * Look up connection factory and queue.  If either does
-         * not exist, exit.
-         */
-        try {
-            queueConnectionFactory = (QueueConnectionFactory)
-                jndiContext.lookup(" glassfishConnectionFactory");
-            queue = (Queue) jndiContext.lookup(queueName);
-        } catch (NamingException e) {
-            System.out.println("JNDI API lookup failed: " + 
-                e.toString());
-            System.exit(1);
-        }
+        System.out.println("Server stopped");
+    }
+    
 
-        /*
-         * Create connection.
-         * Create session from connection; false means session is
-         * not transacted.
-         * Create sender and text message.
-         * Send messages, varying text slightly.
-         * Send end-of-messages message.
-         * Finally, close connection.
-         */
-        try {
-            queueConnection = 
-                queueConnectionFactory.createQueueConnection();
-            queueSession = 
-                queueConnection.createQueueSession(false, 
-                    Session.AUTO_ACKNOWLEDGE);
-            queueSender = queueSession.createSender(queue);
-            message = queueSession.createTextMessage();
-            for (int i = 0; i < NUM_MSGS; i++) {
-            
-            		message.setText(readFile(file));
-           
-            
-                System.out.println("Sending message: " + 
-                    message.getText());
-                queueSender.send(message);
-            }
-
-            /* 
-             * Send a non-text control message indicating end of
-             * messages.
-             */
-            queueSender.send(queueSession.createMessage());
-        } catch (JMSException e) {
-            System.out.println("Exception occurred: " + 
-                e.toString());
-        } finally {
-            if (queueConnection != null) {
-                try {
-                    queueConnection.close();
-                } catch (JMSException e) {}
-            }
-        }
-	}
-	public String readFile(File file)
-	{
-		try {
-			//filen indlæses
-			BufferedReader buffer = new BufferedReader(new FileReader(file));
-			
-			//vi bruger en Stringbuilder til at få teksten til at være 100% som den står
-			//i filen.
-			StringBuilder sb = new StringBuilder();
-			String line = buffer.readLine();
-			
-			while(line != null)
-			{
-				sb.append(line);
-				sb.append("\n");
-				
-				line = buffer.readLine();
-			}
-			//her sættes alt hvad der er i XML dokumentet ind i én string, som gør det nemt
-			//at sende via JMS.
-			everything = sb.toString();
-			
-			
-			buffer.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return everything;
-		
-	}
 }
