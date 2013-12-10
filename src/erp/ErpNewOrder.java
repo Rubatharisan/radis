@@ -23,7 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.LOrder;
 import logic.LProduct;
-import logic.LReadItems;
+
 
 public class ErpNewOrder extends Application {
 
@@ -91,7 +91,7 @@ public class ErpNewOrder extends Application {
 		ETAres = new Label("--");
 		rightLabels.getChildren().add(ETAres);
 
-		Label availability = new Label("Tilg��ngelig: ");
+		Label availability = new Label("Tilgængelig: ");
 		rightLabels.getChildren().add(availability);
 
 		availabilityRes = new Label("--");
@@ -151,8 +151,8 @@ public class ErpNewOrder extends Application {
 						.getSelectedItem().getName());
 				nameRes.setText(table.getSelectionModel().getSelectedItem()
 						.getName());
-				IDres.setText(table.getSelectionModel().getSelectedItem()
-						.getID());
+				IDres.setText(String.valueOf(table.getSelectionModel().getSelectedItem()
+						.getID()));
 				ETAres.setText(String.valueOf(table.getSelectionModel()
 						.getSelectedItem().getETA()));
 				if (table.getSelectionModel().getSelectedItem().isAvailable() == true) {

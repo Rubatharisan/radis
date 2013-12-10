@@ -2,13 +2,14 @@ package logic;
 
 public class LProduct {
 
-	String name, ID;
+	String name; 
+	int ID;
 	int ETA;
 	boolean available;
 
-	public LProduct(String name, String ID, int ETA, boolean available) {
+	public LProduct(String name, int id2, int ETA, boolean available) {
 		this.name = name;
-		this.ID = ID;
+		this.ID = id2;
 		this.ETA = ETA;
 		this.available = available;
 	}
@@ -21,11 +22,11 @@ public class LProduct {
 		this.name = name;
 	}
 
-	public String getID() {
+	public int getID() {
 		return ID;
 	}
 
-	public void setID(String iD) {
+	public void setID(int iD) {
 		ID = iD;
 	}
 

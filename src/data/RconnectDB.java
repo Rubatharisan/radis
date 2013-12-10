@@ -50,7 +50,7 @@ public class RconnectDB {
       // which starts at 1
       // e.g. resultSet.getSTring(2);
      String name = resultSet.getString("name");
-     String id = resultSet.getString("id");
+     int id = resultSet.getInt("id");
      int eta = resultSet.getInt("eta");
      int available = resultSet.getInt("available");
      boolean availablef;
