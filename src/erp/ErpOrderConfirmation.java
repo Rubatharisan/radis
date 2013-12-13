@@ -13,8 +13,6 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
-
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,7 +30,7 @@ import logic.LxmlWriter;
 public class ErpOrderConfirmation extends Application{
 	
 	
-
+	Stage primaryStage;
 	/**
 	 * @param args
 	 */
@@ -46,6 +44,9 @@ public class ErpOrderConfirmation extends Application{
 	LOrder order = ErpNewOrder.orderList.get(0);
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
+		this.primaryStage = primaryStage;
+		
 		// TODO Auto-generated method stub
 		primaryStage.setTitle("Vertical Farming Inc.");
 
@@ -99,12 +100,20 @@ public class ErpOrderConfirmation extends Application{
 		leftTextfield.getChildren().add(ETAField);
 		//Venstre tekstfeldter END
 		
-		HBox buttons = new HBox();
-		buttons.setPadding(new Insets(0,0,0,50));
+		
+		
+		HBox buttons = new HBox(10);
+		buttons.setPadding(new Insets(0,0,0,30));
 		cont.getChildren().add(buttons);
+		
 		Button finalSubmit = new Button("Indsend Ordre");
 		buttons.getChildren().add(finalSubmit);
 		finalSubmit.setOnAction(new newConfirmationListener());
+		
+				
+		Button finalSubmit1 = new Button("JMS Configuration");
+		buttons.getChildren().add(finalSubmit1);
+		finalSubmit1.setOnAction(new newConfigurationListener());
 		
 				
 		Scene scene = new Scene(cont,300,300);
@@ -118,17 +127,37 @@ public class ErpOrderConfirmation extends Application{
 
 		@Override
 		public void handle(ActionEvent arg0) {
-			
+						
 			LxmlWriter write = new LxmlWriter();
+			try {				
+				write.writeXML(order);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-				try {
-					write.writeXML(order);
-				} catch (JMSException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			
-			
+				
+		}
+		
+	}
+	
+	private class newConfigurationListener implements EventHandler<ActionEvent>{
+
+		@Override
+		public void handle(ActionEvent arg0) {
+						
+		
+			Stage SecondStage = new Stage();
+			PopupExample pop = new PopupExample();
+			try {
+				pop.start(SecondStage);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
 		}
 		
 	}

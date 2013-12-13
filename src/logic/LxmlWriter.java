@@ -8,6 +8,8 @@ import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import javafx.stage.Stage;
+
 import javax.jms.JMSException;
 import javax.naming.NamingException;
 import javax.xml.parsers.DocumentBuilder;
@@ -26,10 +28,14 @@ import org.xml.sax.SAXException;
 import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
+import erp.ErpNewOrder;
+import erp.PopupExample;
+
 
 public class LxmlWriter {
+	Stage primaryStage;
 	
-	public void writeXML(LOrder order) throws JMSException{
+	public void writeXML(LOrder order) throws Exception{
 		try{
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -100,7 +106,7 @@ public class LxmlWriter {
 		System.out.println("File saved! " + writtenFile.getName());
 		
 		//Validating the saved xml against XSD B2MML 
-		LxmlValidate validate = new LxmlValidate(writtenFile.getName(), "B2mml/B2MML-V0600-Material.xsd");
+		LxmlValidate validate = new LxmlValidate(writtenFile.getName(), ".git/src\\B2mml\\B2MML-V0600-Material.xsd");
 		System.out.println("The xml file: " + writtenFile.getName() + " " + "is VALID against: " + "B2MML-V0600-Material.xsd");
 		
 
@@ -110,6 +116,10 @@ public class LxmlWriter {
 		XMLSerializer serial   = new XMLSerializer (stringOut, 
                 format);
 		serial.serialize(doc);
+		
+				
+		LtextSender send1 = new LtextSender();
+		send1.produceMessages(writtenFile.getName());
 		
 		System.out.println("========Sending the xml file via JMS==========");
 

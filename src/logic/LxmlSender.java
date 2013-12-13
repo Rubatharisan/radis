@@ -29,7 +29,12 @@ public class LxmlSender {
 	
 	private final static long FILE_SIZE = 1000024; 
 
-
+	public static void main(String[] args) throws NamingException, IOException, JMSException{
+		LtextSender sendText = new LtextSender();
+		sendText.produceMessages("Random.xml");
+		
+		new LxmlSender().SendXML("8OQ0979.xml");
+	}
 
     public void SendXML(String file) throws JMSException, FileNotFoundException, IOException, NamingException {
 
@@ -43,7 +48,8 @@ public class LxmlSender {
     			(QueueConnectionFactory) jndi.lookup("jms/__defaultConnectionFactory");
     			
     	// Look up a JMS Queue
-        Queue queue = (Queue) jndi.lookup("testqueue");
+        Queue queue = (Queue) jndi.lookup("bytequeue");
+        
         
         
         // Create a JMS connection
