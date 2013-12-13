@@ -45,7 +45,7 @@ public class LxmlWriter {
 		Element rootElement = doc.createElement("b2mml:MaterialInformation");
 		rootElement.setAttribute("xmlns:b2mml", "http://www.mesa.org/xml/B2MML-V0600");
 		rootElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
-		rootElement.setAttribute("xsi:schemaLocation", "http://www.mesa.org/xml/B2MML-V0600 B2MML-V0600-Material.xsd");
+		rootElement.setAttribute("xsi:schemaLocation", "http://www.mesa.org/xml/B2MML-V0600/B2MML-V0600-Material.xsd");
 		doc.appendChild(rootElement);
  
 		// staff elements
@@ -106,7 +106,9 @@ public class LxmlWriter {
 		System.out.println("File saved! " + writtenFile.getName());
 		
 		//Validating the saved xml against XSD B2MML 
+
 		LxmlValidate validate = new LxmlValidate(writtenFile.getName(), ".git/src\\B2mml\\B2MML-V0600-Material.xsd");
+
 		System.out.println("The xml file: " + writtenFile.getName() + " " + "is VALID against: " + "B2MML-V0600-Material.xsd");
 		
 

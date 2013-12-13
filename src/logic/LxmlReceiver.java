@@ -21,7 +21,7 @@ import javax.naming.NamingException;
 
 public class LxmlReceiver extends Observable implements Runnable {
 	
-	 LfileObserver ob;
+	 
 	 public static void main(String[] args) throws NamingException, IOException, JMSException{
 			
 			
