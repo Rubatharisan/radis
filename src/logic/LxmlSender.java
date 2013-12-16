@@ -33,17 +33,19 @@ public class LxmlSender {
 		LtextSender sendText = new LtextSender();
 		sendText.produceMessages("Random.xml");
 		
-		new LxmlSender().SendXML("8OQ0979.xml");
+		new LxmlSender().SendXML("8OQ12.xml");
 	}
 
     public void SendXML(String file) throws JMSException, FileNotFoundException, IOException, NamingException {
 
     	
-    	 // Obtain a JNDI connection
-        Properties env = new Properties( );
+    	 // Opnå en JNDI forbindelse
+        Properties prop = new Properties( );
        
-        // ... specify the JNDI properties specific to the vendor
-        InitialContext jndi = new InitialContext(env);
+        // ... Opretter et nyt JNDI
+        InitialContext jndi = new InitialContext();
+        
+        // Opretter et nyt QueueConnectionFactory
     	QueueConnectionFactory queueConnectionFactory =
     			(QueueConnectionFactory) jndi.lookup("jms/__defaultConnectionFactory");
     			
@@ -60,29 +62,25 @@ public class LxmlSender {
         MessageProducer producer = session.createProducer(queue);
         
     
-        File fileInput = new File(file);
+        
 
 
 
         BytesMessage message1 = session.createBytesMessage();
         
-
+        File fileInput = new File(file);
         FileInputStream fileInputStream = new FileInputStream(fileInput);
         BufferedInputStream bufferedInput = new BufferedInputStream(fileInputStream);
        	
-       	
-        int i;
-        
+      	
+        int i;        
         while((i = bufferedInput.read()) != -1)
         {
         	message1.writeInt(i);
         }
         message1.writeInt(-1);
         
-        System.out.println("Sending the file.");
-        bufferedInput.close();
-     // Step 9. Send the Message
-      
+     // Step 9. Send the Message    
         producer.send(message1);
         
         System.out.println("File sent");

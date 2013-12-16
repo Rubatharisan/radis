@@ -63,6 +63,8 @@ public class LtextSender implements Serializable
         
         // Create a JMS connection
      		QueueConnection queueConnection = queueConnectionFactory.createQueueConnection();
+     		
+     		
       Session session =  queueConnection.createSession(false,
         Session.AUTO_ACKNOWLEDGE);
     	
@@ -75,7 +77,7 @@ public class LtextSender implements Serializable
 
 
       textMessage.setText(text);
-      System.out.println("The text content: " + textMessage.getText());
+      System.out.println("The xml filepath name: " + textMessage.getText() + " is sent");
       messageProducer.send(textMessage);
 
 

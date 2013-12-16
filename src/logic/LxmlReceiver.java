@@ -48,6 +48,7 @@ public class LxmlReceiver extends Observable implements Runnable {
 	    			
 	    	// Look up a JMS Queue
 	        Queue queue = (Queue) jndi.lookup("textqueue");
+	        Queue queue1 = (Queue) jndi.lookup("bytequeue");
 	        
 	        
 	        // Create a JMS connection
@@ -56,39 +57,40 @@ public class LxmlReceiver extends Observable implements Runnable {
 	     				Session.AUTO_ACKNOWLEDGE);
 	     		
 	     		MessageConsumer messageConsumer = session.createConsumer(queue);
+	     		MessageConsumer messageConsumer1 = session.createConsumer(queue1);
 	     		
 	     		queueConnection.start();
 	     		
 	     		System.out.println("Receiving message.");
 //	     		
-//     		TextMessage textReceived = (TextMessage) messageConsumer.receive();
+     		TextMessage textReceived = (TextMessage) messageConsumer.receive();
 //	     		
 	     		
 	     		
-	     		BytesMessage messageReceived = (BytesMessage) messageConsumer.receive();
+	     		BytesMessage messageReceived = (BytesMessage) messageConsumer1.receive();
 	     		     		
 	     		
 	     		System.out.println("Received message with: " + messageReceived.getBodyLength() + 
 	     				" bytes. Now streaming to file on disk.");
 	     		
 	     		
-	     		
-//	     		String s = textReceived.getText();
 //	     		
-//	     		System.out.println("TextMessage: " + s);
+	     		String s = textReceived.getText();
+	     		
+	     		System.out.println("TextMessage: " + s);
 	     		
 	     		File file = new File("Random.xml");
-	     		FileOutputStream fos = new FileOutputStream(".git/src\\mes\\" + file);
+	     		FileOutputStream fos = new FileOutputStream( file);
 	     		BufferedOutputStream outBuf = new BufferedOutputStream(fos);
 	     		
 	     	
 	     		
-//	     		int i;
-//	     		while((i=messageReceived.readInt())!=-1){
-//	     		   outBuf.write(i);
-//	     		   
-//	     		  	     		 	     		  	     		 	     		  
-//	     		}
+	     		int i;
+	     		while((i=messageReceived.readInt())!=-1){
+	     		   outBuf.write(i);
+	     		   
+	     		  	     		 	     		  	     		 	     		  
+	     		}
 //	     		
 	     		 
 	     		outBuf.close();
@@ -96,14 +98,14 @@ public class LxmlReceiver extends Observable implements Runnable {
 	     		
 	     		
 	     		
-//	     		System.out.println("File streamed to disk. Size of received file on disk is " + file.length());
+	     		System.out.println("File streamed to disk. Size of received file on disk is " + file.length());
 //	     		
 //	     	
 //	     			
 //		     	    
 //		     		
 //	     		
-//		     System.out.println(file.length());
+		    System.out.println(file.length());
 
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block

@@ -108,6 +108,7 @@ public class LxmlWriter {
 		//Validating the saved xml against XSD B2MML 
 
 		LxmlValidate validate = new LxmlValidate(writtenFile.getName(), ".git/src\\B2mml\\B2MML-V0600-Material.xsd");
+		
 
 		System.out.println("The xml file: " + writtenFile.getName() + " " + "is VALID against: " + "B2MML-V0600-Material.xsd");
 		
@@ -119,6 +120,7 @@ public class LxmlWriter {
                 format);
 		serial.serialize(doc);
 		
+		System.out.println("========Sending the xml filepathname via JMS==========");
 				
 		LtextSender send1 = new LtextSender();
 		send1.produceMessages(writtenFile.getName());
@@ -131,12 +133,7 @@ public class LxmlWriter {
 		
 		System.out.println("========The XML file is sent========");
 		
-		System.out.println("========Receiving the message in MES=========");
-		
-		
-		
-		System.out.println("========The XML file is received in MES=========");
-		
+				
 		
 		}catch (ParserConfigurationException pce) {
 			pce.printStackTrace();

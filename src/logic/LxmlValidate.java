@@ -37,50 +37,7 @@ public class LxmlValidate {
 		
 	}
 
-	 public boolean Xml2String(String xmlFile){
-	    	// Danner JAVA DOM XML Parser
-		 boolean flag = true;
-	        
-	        DocumentBuilderFactory builderFactory =
-	               DocumentBuilderFactory.newInstance();
-	       DocumentBuilder builder = null;
-	       try {
-	           builder = builderFactory.newDocumentBuilder();
-	        } catch (ParserConfigurationException e) {
-	            e.printStackTrace();  
-	        }
-	        
-	       // Omdanner XML filen til XML DOM standard
-	       
-	       try {
-	           Document document = builder.parse(
-	                   new FileInputStream(new File(xmlFile)));
-	           Transformer transformer = TransformerFactory.newInstance().newTransformer();
-	           transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-	           // G�r DOM XML filen l�sevenligt
-	           StreamResult result = new StreamResult(new StringWriter());
-	          DOMSource source = new DOMSource(document);
-	          transformer.transform(source, result);
-	           String xmlString = result.getWriter().toString();
-	           System.out.println(xmlString);
-	       } catch (SAXException e) {
-	           flag = false;
-	       } catch (IOException e) {
-	    	   flag = false;
-	       } catch (TransformerConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TransformerFactoryConfigurationError e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return flag;
-	     
-	   }
+	
 
 	 public static void main(String [] args){
 		 boolean flag = true;

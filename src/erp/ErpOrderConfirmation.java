@@ -111,9 +111,9 @@ public class ErpOrderConfirmation extends Application{
 		finalSubmit.setOnAction(new newConfirmationListener());
 		
 				
-		Button finalSubmit1 = new Button("JMS Configuration");
-		buttons.getChildren().add(finalSubmit1);
-		finalSubmit1.setOnAction(new newConfigurationListener());
+//		Button finalSubmit1 = new Button("JMS Configuration");
+//		buttons.getChildren().add(finalSubmit1);
+//		finalSubmit1.setOnAction(new newConfigurationListener());
 		
 				
 		Scene scene = new Scene(cont,300,300);
@@ -148,15 +148,6 @@ public class ErpOrderConfirmation extends Application{
 		public void handle(ActionEvent arg0) {
 						
 		
-			Stage SecondStage = new Stage();
-			PopupExample pop = new PopupExample();
-			try {
-				pop.start(SecondStage);
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 				
 		}
 		
